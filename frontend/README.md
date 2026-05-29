@@ -33,7 +33,7 @@ This project intentionally follows a strict **Stateful Parent / Stateless Child*
 
 ```
 frontend/
-├── .env.development       # Dev environment URL (http://localhost:8080)
+├── .env.development       # Dev environment URL (http://localhost:8081)
 ├── .env.production        # Prod environment URL (https://api.yourdomain.com)
 ├── postcss.config.js      # PostCSS plugins config
 ├── tailwind.config.js     # Tailwind CSS component directories matching

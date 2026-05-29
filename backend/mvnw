@@ -1,0 +1,32 @@
+#!/bin/sh
+# ==============================================================================
+# Maven Wrapper Shell Script
+# Auto-downloads the maven-wrapper.jar if missing, then runs Maven wrapper
+# ==============================================================================
+
+set -e
+
+PROJECT_DIR="$(cd "$(dirname "$0")" && pwd)"
+WRAPPER_DIR="$PROJECT_DIR/.mvn/wrapper"
+WRAPPER_JAR="$WRAPPER_DIR/maven-wrapper.jar"
+PROPERTIES_FILE="$WRAPPER_DIR/maven-wrapper.properties"
+
+# Create wrapper directory if missing
+mkdir -p "$WRAPPER_DIR"
+
+# Download maven-wrapper.jar if it does not exist
+if [ ! -f "$WRAPPER_JAR" ]; then
+    echo "Downloading maven-wrapper.jar..."
+    JAR_URL=$(grep "wrapperUrl" "$PROPERTIES_FILE" | cut -d'=' -f2 | tr -d '\r')
+    if command -v curl >/dev/null 2>&1; then
+        curl -sSL "$JAR_URL" -o "$WRAPPER_JAR"
+    elif command -v wget >/dev/null 2>&1; then
+        wget -q "$JAR_URL" -O "$WRAPPER_JAR"
+    else
+        echo "Error: curl or wget is required to download Maven Wrapper."
+        exit 1
+    fi
+fi
+
+# Execute Maven
+exec java -classpath "$WRAPPER_JAR" "-Dmaven.multiModuleProjectDirectory=$PROJECT_DIR" org.apache.maven.wrapper.MavenWrapperMain "$@"

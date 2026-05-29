@@ -10,15 +10,15 @@ const props = defineProps<{
 
 // Computed properties derived strictly from props
 const totalCount = computed(() => props.users.length)
-const adminCount = computed(() => props.users.filter(u => u.role === 'A').length)
-const userCount = computed(() => props.users.filter(u => u.role === 'U').length)
+const adminCount = computed(() => props.users.filter((u) => u.role === 'A').length)
+const userCount = computed(() => props.users.filter((u) => u.role === 'U').length)
 </script>
 
 <template>
-  <div class="p-6 bg-slate-900/40 backdrop-blur-md border border-slate-800/80 rounded-2xl space-y-6">
+  <div class="p-6 bg-white/80 backdrop-blur-md border border-slate-200/80 rounded-2xl shadow-sm space-y-6">
     <div>
-      <h2 class="text-lg font-bold text-slate-150">Overview Metrics</h2>
-      <p class="text-xs text-slate-400 mt-0.5">Live metrics calculated directly from user dataset props</p>
+      <h2 class="text-lg font-bold text-slate-900">Overview Metrics</h2>
+      <p class="text-xs text-slate-500 mt-0.5">Live metrics calculated directly from user dataset props</p>
     </div>
 
     <!-- Render three stateless CountComponents in a responsive grid -->
